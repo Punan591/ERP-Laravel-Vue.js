@@ -30,7 +30,7 @@ const clientsCount = computed(() => {
     return clientStatus.value.map(status => status.count).reduce((acc, value) => acc + value, 0);
 });
 
-const deleteAppointment = (id) => {
+const deleteClient = (id) => {
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -41,9 +41,9 @@ const deleteAppointment = (id) => {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            axios.delete(`/api/appointments/${id}`)
+            axios.delete(`/api/clients/${id}`)
                 .then((response) => {
-                    appointments.value.data = appointments.value.data.filter(appointment => appointment.id !== id);
+                    clients.value.data = clients.value.data.filter(client => client.id !== id);
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',
@@ -130,7 +130,7 @@ onMounted(() => {
                                                 <i class="fa fa-edit mr-2" style="color: #ffc107;"></i>
                                             </router-link>
 
-                                            <a href="#" @click.prevent="deleteAppointment(appointment.id)">
+                                            <a href="#" @click.prevent="deleteClient(client.id)">
                                                 <i class="fa fa-trash text-danger"></i>
                                             </a>
                                         </td>

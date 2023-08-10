@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/clients/{client}/edit', [ClientController::class, 'edit']);
     Route::put('/api/clients/{client}/edit', [ClientController::class, 'update']);
     Route::get('/api/client-status', [ClientStatusController::class, 'getStatusWithCount']);
+    Route::delete('/api/clients/{client}', [ClientController::class, 'destroy']);
 
     Route::get('/api/appointment-status', [AppointmentStatusController::class, 'getStatusWithCount']);
     Route::get('/api/appointments', [AppointmentController::class, 'index']);
